@@ -38,8 +38,7 @@ export const App: React.FC = () => {
     }
   }, [isAdding]);
 
-
-  function filterTodos(todos:Todo[]) {
+  function filterTodos() {
     switch (filter) {
       case Filter.Active:
         return todos.filter(todo => !todo.completed);
@@ -129,7 +128,7 @@ export const App: React.FC = () => {
       });
   };
 
-  const filteredTodos = filterTodos(todos);
+  const filteredTodos = filterTodos();
 
   useEffect(() => {
     if (errorMessage) {
@@ -245,7 +244,10 @@ export const App: React.FC = () => {
             <nav className="filter" data-cy="Filter">
               <a
                 href="#/"
-                className={classNames('filter__link', filter === Filter.All && 'selected')}
+                className={classNames(
+                  'filter__link',
+                  filter === Filter.All && 'selected',
+                )}
                 data-cy="FilterLinkAll"
                 onClick={() => setFilter(Filter.All)}
               >
@@ -255,7 +257,9 @@ export const App: React.FC = () => {
               <a
                 href="#/active"
                 className={
-                  filter === Filter.Active ? 'filter__link selected' : 'filter__link'
+                  filter === Filter.Active
+                    ? 'filter__link selected'
+                    : 'filter__link'
                 }
                 data-cy="FilterLinkActive"
                 onClick={() => setFilter(Filter.Active)}
