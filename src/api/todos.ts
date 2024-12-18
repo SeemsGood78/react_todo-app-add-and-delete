@@ -15,7 +15,7 @@ export const deleteTodos = (id: number) => {
   return client.delete(baseUrl);
 };
 
-export const addTodo = (newTodo:Omit<Todo, "id">) => {
+export const addTodo = (newTodo: Omit<Todo, 'id'>) => {
   const baseUrl = `/todos`;
 
   return client.post<Todo>(baseUrl, newTodo);
